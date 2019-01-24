@@ -1,0 +1,1 @@
+# kaleidochain-testnet-automization
