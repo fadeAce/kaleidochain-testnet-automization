@@ -1,0 +1,11 @@
+version: "2"
+services:
+  turn:
+    image: kaleidochain/client:test
+    container_name: node1
+    ports:
+      - "38883:38883"
+      - "38883:38883/udp"
+    volumes:
+      - $PWD/node1:/root/.ethereum
+    entrypoint: geth -tnode enode://a5989375caad943d5c42a1c2e129cadacb94db2392d3aa22ee081f05f66bfb580a86d3b14f320399ecf6b3348ad06284a6ed038c44cda25630ef4027e7102a06@45.77.42.61:9992  --testnet --rpc --rpcaddr=0.0.0.0 --rpcvhosts='*' --rpcapi eth,net --ws --wsaddr=0.0.0.0 --wsorigins='*' --verbosity 3 --vmodule 'eth/*=5,consensus/*=5,core/*=5,miner/*=5,p2p/discv5/*=3,p2p/discover/*=3,p2p/*=5'
