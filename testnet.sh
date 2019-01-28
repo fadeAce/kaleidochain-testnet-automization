@@ -20,7 +20,7 @@ touch docker-compose.yml
 echo 'version: "2"' >> docker-compose.yml
 echo 'services:' >> docker-compose.yml
 echo '  turn:' >> docker-compose.yml
-echo '    image: harbor.headlines.pw/kaleido/turn-test:v0.0.4' >> docker-compose.yml
+echo '    image: kaleidochain/client:test' >> docker-compose.yml
 echo '    container_name: node1' >> docker-compose.yml
 echo '    ports:' >> docker-compose.yml
 echo '      - "2510:2510"' >> docker-compose.yml

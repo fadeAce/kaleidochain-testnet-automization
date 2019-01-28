@@ -12,23 +12,24 @@ if [[ -z ${ARG} ]]; then
     exit
 fi
 
+
 if [[ "$ARG" == "pull" ]]; then
    #Atlanta
-   ssh root@144.202.20.161 "docker pull harbor.headlines.pw/kaleido/turn-test:v0.0.4"
+   ssh root@144.202.20.161 "docker pull kaleido/client:test"
    #Silicon
-   ssh root@149.28.208.216 "docker pull harbor.headlines.pw/kaleido/turn-test:v0.0.4"
+   ssh root@149.28.208.216 "docker pull kaleido/client:test"
    #Paris
-   ssh root@217.69.5.78 "docker pull harbor.headlines.pw/kaleido/turn-test:v0.0.4"
+   ssh root@217.69.5.78 "docker pull kaleido/client:test"
    #Franjfuirt
-   ssh root@140.82.38.200 "docker pull harbor.headlines.pw/kaleido/turn-test:v0.0.4"
+   ssh root@140.82.38.200 "docker pull kaleido/client:test"
    #London
-   ssh root@45.77.227.48 "docker pull harbor.headlines.pw/kaleido/turn-test:v0.0.4"
+   ssh root@45.77.227.48 "docker pull kaleido/client:test"
    #Tokyo
-   ssh root@149.28.27.110 "docker pull harbor.headlines.pw/kaleido/turn-test:v0.0.4"
+   ssh root@149.28.27.110 "docker pull kaleido/client:test"
    #Sydney
-   #ssh root@149.28.172.14 "docker pull harbor.headlines.pw/kaleido/turn-test:v0.0.4"
+   ssh root@45.76.114.125 "docker pull kaleido/client:test"
    #China
-   ssh root@119.23.233.228 "docker pull harbor.headlines.pw/kaleido/turn-test:v0.0.4"
+   ssh root@119.23.233.228 "docker pull kaleido/client:test"
 fi
 
 if [[ "$ARG" == "start" ]]; then
@@ -45,7 +46,7 @@ if [[ "$ARG" == "start" ]]; then
    #Tokyo
    ssh root@149.28.27.110 "docker start node1"
    #Sydney
-   #ssh root@149.28.172.14 "docker start node1"
+   ssh root@45.76.114.125 "docker start node1"
    #China
    ssh root@119.23.233.228 "docker start node1"
 fi
@@ -64,7 +65,7 @@ if [[ "$ARG" == "stop" ]]; then
    #Tokyo
    ssh root@149.28.27.110 "docker stop node1"
    #Sydney
-   #ssh root@149.28.172.14 "docker stop node1"
+   ssh root@45.76.114.125 "docker stop node1"
    #China
    ssh root@119.23.233.228 "docker stop node1"
 fi
@@ -83,7 +84,7 @@ if [[ "$ARG" == "rm" ]]; then
    #Tokyo
    ssh root@149.28.27.110 "docker rm node1"
    #Sydney
-   #ssh root@149.28.172.14 "docker rm node1"
+   ssh root@45.76.114.125 "docker rm node1"
    #China
    ssh root@119.23.233.228 "docker rm node1"
 fi
@@ -103,7 +104,7 @@ if [[ "$ARG" == "up" ]]; then
    #Tokyo
    ssh root@149.28.27.110 "cd /usr/local/kaleido/testnet;docker-compose up -d"
    #Sydney
-   #ssh root@149.28.172.14 "cd /usr/local/kaleido/testnet;docker-compose up -d"
+   ssh root@45.76.114.125 "cd /usr/local/kaleido/testnet;docker-compose up -d"
    #China
    ssh root@119.23.233.228 "cd /usr/local/kaleido/testnet;docker-compose up -d"
 fi
@@ -123,7 +124,7 @@ if [[ "$ARG" == "ps" ]]; then
    #Tokyo
    ssh root@149.28.27.110 "docker ps"
    #Sydney
-   #ssh root@149.28.172.14 "cd /usr/local/kaleido/testnet;docker-compose up -d"
+   ssh root@45.76.114.125 "docker ps"
    #China
    ssh root@119.23.233.228 "docker ps"
 fi
@@ -143,7 +144,7 @@ if [[ "$ARG" == "update" ]]; then
    #Tokyo
    ssh root@149.28.27.110 "docker ps"
    #Sydney
-   #ssh root@149.28.172.14 "cd /usr/local/kaleido/testnet;docker-compose up -d"
+   ssh root@45.76.114.125 "docker ps"
    #China
    ssh root@119.23.233.228 "docker ps"
 fi
