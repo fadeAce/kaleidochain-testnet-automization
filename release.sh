@@ -1,6 +1,26 @@
 #!/bin/bash
 ARG=$1
 
+#Atlanta
+arry_net[0]="144.202.20.161"
+#SiliconValley
+arry_net[1]="119.23.233.228"
+#China
+arry_net[2]="149.28.208.216"
+#Paris
+arry_net[3]="217.69.5.78"
+#Franjfuirt
+arry_net[4]="140.82.38.200"
+#London
+arry_net[5]="45.77.227.48"
+#Tokyo
+arry_net[6]="149.28.27.110"
+#Sydney
+arry_net[7]="45.76.114.125"
+#Sydney
+arry_net[8]="127.0.0.1"
+
+
 if [[ -z ${ARG} ]]; then
     echo "Commands:"
     echo "    pull"
@@ -9,144 +29,56 @@ if [[ -z ${ARG} ]]; then
     echo "    rm"
     echo "    up"
     echo "    ps"
+    echo "    update"
     exit
 fi
 
 
-if [[ "$ARG" == "pull" ]]; then
-   #Atlanta
-   ssh root@144.202.20.161 "docker pull kaleido/client:test"
-   #Silicon
-   ssh root@149.28.208.216 "docker pull kaleido/client:test"
-   #Paris
-   ssh root@217.69.5.78 "docker pull kaleido/client:test"
-   #Franjfuirt
-   ssh root@140.82.38.200 "docker pull kaleido/client:test"
-   #London
-   ssh root@45.77.227.48 "docker pull kaleido/client:test"
-   #Tokyo
-   ssh root@149.28.27.110 "docker pull kaleido/client:test"
-   #Sydney
-   ssh root@45.76.114.125 "docker pull kaleido/client:test"
-   #China
-   ssh root@119.23.233.228 "docker pull kaleido/client:test"
-fi
-
-if [[ "$ARG" == "start" ]]; then
-   #Atlanta
-   ssh root@144.202.20.161 "docker start node1"
-   #Silicon
-   ssh root@149.28.208.216 "docker start node1"
-   #Paris
-   ssh root@217.69.5.78 "docker start node1"
-   #Franjfuirt
-   ssh root@140.82.38.200 "docker start node1"
-   #London
-   ssh root@45.77.227.48 "docker start node1"
-   #Tokyo
-   ssh root@149.28.27.110 "docker start node1"
-   #Sydney
-   ssh root@45.76.114.125 "docker start node1"
-   #China
-   ssh root@119.23.233.228 "docker start node1"
-fi
-
-if [[ "$ARG" == "stop" ]]; then
-   #Atlanta
-   ssh root@144.202.20.161 "docker stop node1"
-   #Silicon
-   ssh root@149.28.208.216 "docker stop node1"
-   #Paris
-   ssh root@217.69.5.78 "docker stop node1"
-   #Franjfuirt
-   ssh root@140.82.38.200 "docker stop node1"
-   #London
-   ssh root@45.77.227.48 "docker stop node1"
-   #Tokyo
-   ssh root@149.28.27.110 "docker stop node1"
-   #Sydney
-   ssh root@45.76.114.125 "docker stop node1"
-   #China
-   ssh root@119.23.233.228 "docker stop node1"
-fi
-
-if [[ "$ARG" == "rm" ]]; then
-   #Atlanta
-   ssh root@144.202.20.161 "docker rm node1"
-   #Silicon
-   ssh root@149.28.208.216 "docker rm node1"
-   #Paris
-   ssh root@217.69.5.78 "docker rm node1"
-   #Franjfuirt
-   ssh root@140.82.38.200 "docker rm node1"
-   #London
-   ssh root@45.77.227.48 "docker rm node1"
-   #Tokyo
-   ssh root@149.28.27.110 "docker rm node1"
-   #Sydney
-   ssh root@45.76.114.125 "docker rm node1"
-   #China
-   ssh root@119.23.233.228 "docker rm node1"
-fi
-
-
-if [[ "$ARG" == "up" ]]; then
-   #Atlanta
-   ssh root@144.202.20.161 "cd /usr/local/kaleido/testnet;docker-compose up -d"
-   #Silicon
-   ssh root@149.28.208.216 "cd /usr/local/kaleido/testnet;docker-compose up -d"
-   #Paris
-   ssh root@217.69.5.78 "cd /usr/local/kaleido/testnet;docker-compose up -d"
-   #Franjfuirt
-   ssh root@140.82.38.200 "cd /usr/local/kaleido/testnet;docker-compose up -d"
-   #London
-   ssh root@45.77.227.48 "cd /usr/local/kaleido/testnet;docker-compose up -d"
-   #Tokyo
-   ssh root@149.28.27.110 "cd /usr/local/kaleido/testnet;docker-compose up -d"
-   #Sydney
-   ssh root@45.76.114.125 "cd /usr/local/kaleido/testnet;docker-compose up -d"
-   #China
-   ssh root@119.23.233.228 "cd /usr/local/kaleido/testnet;docker-compose up -d"
-fi
-
-
-if [[ "$ARG" == "ps" ]]; then
-   #Atlanta
-   ssh root@144.202.20.161 "docker ps"
-   #Silicon
-   ssh root@149.28.208.216 "docker ps"
-   #Paris
-   ssh root@217.69.5.78 "docker ps"
-   #Franjfuirt
-   ssh root@140.82.38.200 "docker ps"
-   #London
-   ssh root@45.77.227.48 "docker ps"
-   #Tokyo
-   ssh root@149.28.27.110 "docker ps"
-   #Sydney
-   ssh root@45.76.114.125 "docker ps"
-   #China
-   ssh root@119.23.233.228 "docker ps"
-fi
-
-
-if [[ "$ARG" == "update" ]]; then
-   #Atlanta
-   ssh root@144.202.20.161 "cd /usr/local/kaleido/testnet;git clone https://github.com/fadeAce/kaleidochain-testnet-automization.git;cp kaleidochain-testnet-automization/"
-   #Silicon
-   ssh root@149.28.208.216 "docker ps"
-   #Paris
-   ssh root@217.69.5.78 "docker ps"
-   #Franjfuirt
-   ssh root@140.82.38.200 "docker ps"
-   #London
-   ssh root@45.77.227.48 "docker ps"
-   #Tokyo
-   ssh root@149.28.27.110 "docker ps"
-   #Sydney
-   ssh root@45.76.114.125 "docker ps"
-   #China
-   ssh root@119.23.233.228 "docker ps"
-fi
-
-
+for var in ${arry_net[@]};
+do
+    if [[ "$var" == "127.0.0.1" ]]; then
+        if [[ "$ARG" == "pull" ]]; then
+        docker pull kaleidochain/client:test
+        fi
+        if [[ "$ARG" == "start" ]]; then
+        docker start node1
+        fi
+        if [[ "$ARG" == "stop" ]]; then
+        docker stop node1
+        fi
+        if [[ "$ARG" == "rm" ]]; then
+        docker rm node1
+        fi
+        if [[ "$ARG" == "up" ]]; then
+        cd /usr/local/kaleido/testnet;docker-compose up -d
+        fi
+        if [[ "$ARG" == "ps" ]]; then
+        docker ps
+        fi
+        if [[ "$ARG" == "update" ]]; then
+        docker pull kaleidochain/client:test
+        fi
+        continue
+    fi
+     if [[ "$ARG" == "pull" ]]; then
+        ssh root@${var} "docker pull kaleidochain/client:test"
+        fi
+        if [[ "$ARG" == "start" ]]; then
+        ssh root@${var} "docker start node1"
+        fi
+        if [[ "$ARG" == "stop" ]]; then
+        ssh root@${var} "docker stop node1"
+        fi
+        if [[ "$ARG" == "rm" ]]; then
+        ssh root@${var} "docker rm node1"
+        fi
+        if [[ "$ARG" == "up" ]]; then
+        ssh root@${var} "cd /usr/local/kaleido/testnet;docker-compose up -d"
+        fi
+        if [[ "$ARG" == "ps" ]]; then
+        ssh root@${var} "docker ps"
+        fi
+        if [[ "$ARG" == "update" ]]; then
+        ssh root@${var} "docker pull kaleidochain/client:test"
+        fi
+done
