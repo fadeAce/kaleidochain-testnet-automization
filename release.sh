@@ -23,13 +23,13 @@ arry_net[8]="127.0.0.1"
 
 if [[ -z ${ARG} ]]; then
     echo "Commands:"
-    echo "    pull"
-    echo "    start"
-    echo "    stop"
-    echo "    rm"
-    echo "    up"
-    echo "    ps"
-    echo "    update"
+    echo "    pull      pull the latest image for testnet"
+    echo "    start     start all dead nodes (skip alive)"
+    echo "    stop      stop all living nodes (skip dead)"
+    echo "    rm        rm all dead nodes (remove all need a preliminary of stop)"
+    echo "    up        up create new container for all nodes then run it"
+    echo "    ps        show all nodes"
+    echo "    update    update compose file which decided how lifecycle runs in kal up"
     exit
 fi
 
