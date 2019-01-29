@@ -9,7 +9,7 @@ if [[ -a docker-compose.yml ]];then
 rm -f docker-compose.yml
 fi;
 
-touch docker-compose.yml
+touch docker-compose-${CONTAINER}.yml
 
 echo 'version: "2"' >> docker-compose.yml
 echo 'services:' >> docker-compose.yml
@@ -27,4 +27,4 @@ echo "    entrypoint: geth -tnode enode://a5989375caad943d5c42a1c2e129cadacb94db
 pip install docker-compose
 
 #compose
-docker-compose up -d
+docker-compose -f docker-compose-${CONTAINER}.yml up -d

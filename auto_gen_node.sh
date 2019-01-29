@@ -39,6 +39,6 @@ do
     if [[ ${res} -eq 0 ]]; then
     # none fail here and inside ,directly start up
     echo "NODE_NAME=${NAME};KPORT=388$[${SEQ}+2];CONTAINER=node${SEQ};ADDRESS=${ADDR}"
-    ssh root@${IP} "export ADDRESS=${ADDR};export NODE_NAME=${NAME};export KPORT=388$[${SEQ}+2];export CONTAINER=node${SEQ};wget https://raw.githubusercontent.com/fadeAce/kaleidochain-testnet-automization/master/testnet.sh;chmod +x testnet.sh;bash testnet.sh"
+    ssh root@${IP} "export ADDRESS=${ADDR};export NODE_NAME=${NAME};export KPORT=388$[${SEQ}+2];export CONTAINER=node${SEQ};docker stop ${CONTAINER};docker rm ${CONTAINER};docker run -d -p ${KPORT}:${KPORT} -p ${KPORT}:${KPORT}/udp --name="${CONTAINER}" -v $PWD/${CONTAINER}:/root/.ethereum kaleidochain/client:test geth -tnode enode://a5989375caad943d5c42a1c2e129cadacb94db2392d3aa22ee081f05f66bfb580a86d3b14f320399ecf6b3348ad06284a6ed038c44cda25630ef4027e7102a06@45.77.42.61:9992  --testnet --mine --etherbase ${ADDRESS} --gcmode archive --ethstats '${NODE_NAME}:1234@45.77.42.61:30303' --verbosity 3 --vmodule 'eth/*=5,consensus/*=5,core/*=5,miner/*=5,p2p/discv5/*=3,p2p/discover/*=3,p2p/*=5'"
     fi
 done < ${filename}
