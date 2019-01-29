@@ -15,7 +15,7 @@ function initnode() {
     if [[ "$exist" == "exist" ]]; then
         return 1
     fi
-    /tmp/node${seq}.dat.$$ < ssh root@${IP} "docker run --rm -v /usr/local/kaleido/testnet/node${seq}:/root/.ethereum kaleidochain/client:test --testnet makeminerkey --miner ${addr} --coinbase ${addr} --begin ${h}"
+    ssh root@${IP} "docker run --rm -v /usr/local/kaleido/testnet/node${seq}:/root/.ethereum kaleidochain/client:test --testnet makeminerkey --miner ${addr} --coinbase ${addr} --begin ${h}" > /tmp/node${seq}.dat.$$
     JS=`cat /tmp/node${seq}.dat.$$ | gawk '/miner:/{miner=$2;printf("personal.unlockAccount(\"%s\", \"1234\", 3000); ", miner);} /contract address/{minerdb=$3;} /Generate minerkey/{data=$3; printf("hash=eth.sendTransaction({from:\"%s\", to:\"%s\", gas:200000, gasPrice:20000000000, data:\"%s\"});admin.sleepBlocks(2);receipt=eth.getTransactionReceipt(hash);console.log(JSON.stringify(receipt, null, \"\\t\")); hash;\n",miner,minerdb,data)}'`
     cat /tmp/node${seq}.dat.$$
     rm /tmp/node${seq}.dat.$$
@@ -33,7 +33,7 @@ do
     fi
     # find H
     H=$(docker exec node1 geth --testnet attach --exec eth.blockNumber)
-    ssh root@${IP} "mkdir -p /usr/local/kaleido/testnet/node${seq}"
+    ssh root@${IP} "mkdir -p /usr/local/kaleido/testnet/node${SEQ}"
     res=$(initnode ${IP} ${SEQ} ${ADDR} ${H})
     echo "result for node is "${res}
     if [[ ${res} -eq 0 ]]; then
