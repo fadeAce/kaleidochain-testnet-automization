@@ -3,22 +3,6 @@
 filename=gen.kal
 echo "filename="${filename}
 
-while read IP SEQ ADDR NAME;
-do
-	if [[ "IP" == "127.0.0.1" ]]; then
-        continue
-    fi
-    # find H
-    H=$(docker exec node1 geth --testnet attach --exec eth.blockNumber)
-    ssh root@${IP} "mkdir -p /usr/local/kaleido/testnet/node${seq}"
-    res=$(initnode ${IP} ${SEQ} ${ADDR} ${H})
-    echo "result for node is "${res}
-    if [[ ${res} -eq 0 ]]; then
-    # none fail here and inside ,directly start up
-    echo "NODE_NAME='${NAME}';KPORT=388$[${SEQ}+2];CONTAINER='node'${SEQ};ADDRESS=${ADDR}"
-    ssh root@${IP} "export ADDRESS=${ADDR};export NODE_NAME='${NAME}';export KPORT=388$[${SEQ}+2];export CONTAINER='node'${SEQ};wget https://raw.githubusercontent.com/fadeAce/kaleidochain-testnet-automization/master/testnet.sh;chmod +x testnet.sh;bash testnet.sh"
-    fi
-done < ${filename}
 
 
 function initnode() {
@@ -39,3 +23,22 @@ function initnode() {
     docker exec node1 geth --testnet attach --exec "${JS}"
     return 0
 }
+
+
+
+while read IP SEQ ADDR NAME;
+do
+	if [[ "IP" == "127.0.0.1" ]]; then
+        continue
+    fi
+    # find H
+    H=$(docker exec node1 geth --testnet attach --exec eth.blockNumber)
+    ssh root@${IP} "mkdir -p /usr/local/kaleido/testnet/node${seq}"
+    res=$(initnode ${IP} ${SEQ} ${ADDR} ${H})
+    echo "result for node is "${res}
+    if [[ ${res} -eq 0 ]]; then
+    # none fail here and inside ,directly start up
+    echo "NODE_NAME=${NAME};KPORT=388$[${SEQ}+2];CONTAINER=node${SEQ};ADDRESS=${ADDR}"
+    ssh root@${IP} "export ADDRESS=${ADDR};export NODE_NAME=${NAME};export KPORT=388$[${SEQ}+2];export CONTAINER=node${SEQ};wget https://raw.githubusercontent.com/fadeAce/kaleidochain-testnet-automization/master/testnet.sh;chmod +x testnet.sh;bash testnet.sh"
+    fi
+done < ${filename}
