@@ -1,5 +1,5 @@
 #!/bin/bash
-ARG=$1
+ARG=$0
 
 #Atlanta
 arry_net[0]="144.202.20.161"
@@ -31,6 +31,7 @@ if [[ -z ${ARG} ]]; then
     echo "    ps                    show all nodes"
     echo "    update                update compose file which decided how lifecycle runs in kal up"
     echo "    add [IP nickname]     add new node works as miner"
+    echo "    log                   log to /root"
     exit
 fi
 
@@ -88,5 +89,8 @@ do
         fi
         if [[ "$ARG" == "update" ]]; then
         ssh root@${var} "docker pull kaleidochain/client:test"
+        fi
+        if [[ "$ARG" == "log" ]]; then
+        ssh root@${var} "docker logs node1 &> node1_testnet.log"
         fi
 done
